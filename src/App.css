@@ -1,15 +1,27 @@
+.mainBody {
+  align-items: center;
+}
+body {
+  background-color: #ddd;
+}
+.h2{
+  margin-left: 1cm;
+  margin-right: 1cm;
+  font-size: 2rem;
+}
 .table-container {
   max-height: 300px; /* Set the maximum height as per your requirement */
   overflow-y: auto; /* Add vertical scrollbar */
-  margin-top: 3cm;
+  margin-top: 1cm;
   margin-left: 1cm;
   margin-right: 1cm;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 3px 3px 5px #888888, -3px -3px 5px #888888
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-
 }
 
 th, td {

@@ -35,25 +35,28 @@ export default function App() {
     .sort((a, b) => b.popularity - a.popularity);
 
   return (
-    <div className="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Price</th>
-            <th>Popularity</th>
-          </tr>
-        </thead>
-        <tbody>
-          {sortedProducts.map((product, index) => (
-            <tr key={index}>
-              <td>{product.title}</td>
-              <td>{product.price}</td>
-              <td>{product.popularity}</td>
+    <div> 
+      <h2 className="h2">Products Lists</h2>
+      <div className="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Price</th>
+              <th>Popularity</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {sortedProducts.map((product, index) => (
+              <tr key={index}>
+                <td>{product.title}</td>
+                <td>{product.price}</td>
+                <td>{product.popularity}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
