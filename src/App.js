@@ -1,25 +1,59 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "./App.css";
 
-function App() {
+export default function App() {
+  const [list, setList] = useState({});
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://s3.amazonaws.com/open-to-cors/assignment.json"
+        );
+        setList(response.data.products);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetch2 = () => {
+      const productArray = Object.values(list); // Extract values from the list object
+      setProducts(productArray);
+    };
+
+    fetch2();
+  }, [list]);
+
+  const sortedProducts = products
+    .slice()
+    .sort((a, b) => b.popularity - a.popularity);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Popularity</th>
+          </tr>
+        </thead>
+        <tbody>
+          {sortedProducts.map((product, index) => (
+            <tr key={index}>
+              <td>{product.title}</td>
+              <td>{product.price}</td>
+              <td>{product.popularity}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
-
-export default App;
